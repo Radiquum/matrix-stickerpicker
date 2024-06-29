@@ -1,12 +1,18 @@
 import subprocess
 import shutil
 import os
+import platform
 
 from . import __version__
 
+if platform.system() == "Windows":
+    HOME = os.environ["USERPROFILE"]
+else:
+    HOME = os.environ["HOME"]
+
 cmd_env = {
     "PATH": os.environ["PATH"],
-    "HOME": os.environ["HOME"],
+    "HOME": HOME,
     "LANG": "C",
     "LC_ALL": "C",
 }

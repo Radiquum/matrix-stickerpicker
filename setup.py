@@ -1,4 +1,6 @@
 import setuptools
+import platform
+
 
 from sticker.get_version import git_tag, git_revision, version, linkified_version
 
@@ -6,7 +8,10 @@ with open("requirements.txt") as reqs:
     install_requires = reqs.read().splitlines()
 
 try:
-    long_desc = open("README.md").read()
+    if platform.system() == "Windows":
+        long_desc = open("README.md", encoding="utf-8").read()
+    else:
+        long_desc = open("README.md").read()
 except IOError:
     long_desc = "Failed to read README.md"
 
